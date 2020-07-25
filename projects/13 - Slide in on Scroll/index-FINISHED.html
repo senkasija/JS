@@ -43,7 +43,7 @@
   </div>
 
   <script>
-    function debounce(func, wait = 20, immediate = true) {
+    function debounce(func, wait = 20, immediate = true) {//ova funkcija ima parametar funkciju checkSlide, a ostale su default
       var timeout;
       return function() {
         var context = this, args = arguments;
@@ -55,19 +55,36 @@
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
+        console.log("šta je kontekst: " + context + " a šta je args: " + args+ " a šta je this " + this);  
+        // evo funkcije checkSlide() koja se ovde kopira putem apply
+        //apply je metoda  koja usmerava na određenu funkciju i traži parametre u formi niza
       };
     };
 
-    const sliderImages = document.querySelectorAll('.slide-in');
+    const sliderImages = document.querySelectorAll('.slide-in');//ovo je niz koji se odnosi na svaku sliku pojedinačno
 
-    function checkSlide() {
+    function checkSlide() {//funkcija izračunava poziciju fotografije
       sliderImages.forEach(sliderImage => {
+        //Ovo je funkcija koja obrađuje ponašanje svake fotografije
         // half way through the image
-        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2; 
+        //ovo je visina stranice umanjena za polovinu visine fotografije: dno stranice umenjeno za polovinu visine fotografije
+        //The innerHeight property returns the height of a window's content area.
+        console.log("Koliko je stranica skrolovana od samog vrha stranice pa do vrha ekrana: "+ window.scrollY);
+        //Pokazuje nam koliko smo se spustili od vrha prozora.
+        console.log("Visina prozora je: "+window.innerHeight);
+        //Pokazuje nam koliko smo se spustili od vrha prozora.
+        console.log("Dno ekrana gledano od početka stranice je: "+ Number(window.scrollY + window.innerHeight)) 
+        //ovim dobijam bottom ekrana u odnosu na sam vrh prozora
         // bottom of the image
         const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        console.log("Dno fotografije u odnosu na početak prozora je: "+ imageBottom);
+        //pokazuje bottom fotografije, što nam je važno kada skrolujemo unazad
+        //sliderImage.offsetTop pokazuje visinu od vrha stranice do vrha fotografije
         const isHalfShown = slideInAt > sliderImage.offsetTop;
-        const isNotScrolledPast = window.scrollY < imageBottom;
+        //zanimljiv način za bolean: ako je visina polovine visine fotografije veća pozicije vrha fotografije, slika treba da se pokaže
+        console.log("Trenutak kada fotografija treba da se pokaže je: " + isHalfShown +" jer je slideInAt: "+slideInAt+" a sliderImage.offsetTop koji je "+ sliderImage.offsetTop);
+        const isNotScrolledPast = window.scrollY < imageBottom; //nismo još prošli dno fotografije, a kad dno fotografije postane manje od skrolovanog dela stranice, onda fotografija nestaje
         if (isHalfShown && isNotScrolledPast) {
           sliderImage.classList.add('active');
         } else {
@@ -76,7 +93,7 @@
       });
     }
 
-    window.addEventListener('scroll', debounce(checkSlide));
+    window.addEventListener('scroll', debounce(checkSlide));//ako bih ubacio još parametara za funkciju debounche onda bi oni zamenili ove predodređene
 
   </script>
 

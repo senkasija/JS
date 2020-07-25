@@ -8,6 +8,7 @@
 
   <div class="hero">
     <h1 contenteditable>🔥WOAH!</h1>
+    <!-- The contenteditable attribute specifies whether the content of an element is editable or not. -->
   </div>
 
   <style>
@@ -35,13 +36,21 @@
   </style>
 
 <script>
-  const hero = document.querySelector('.hero');
-  const text = hero.querySelector('h1');
+  const hero = document.querySelector('.hero'); //uzima div koji će da osluškuje događaj
+  const text = hero.querySelector('h1'); //uzima tekst pasusa sa ikonom
   const walk = 500; // 500px
 
   function shadow(e) {
+    console.log("Objekat koji je rezultat pokreta mišem:");
+    console.log(e);
     const { offsetWidth: width, offsetHeight: height } = hero;
-    let { offsetX: x, offsetY: y } = e;
+    /* ZANIMLJIVA SINTAKSA. isto je što:
+    *   const width = hero.offsetWidth;
+    *   const height = hero.offsetHeight;  
+    */
+    console.log("Hero je div: ");
+    console.log(hero);
+    let { offsetX: x, offsetY: y } = e; // ova varijabla određuje gde je miš unutar diva
 
     if (this !== e.target) {
       x = x + e.target.offsetLeft;
@@ -61,6 +70,7 @@
   }
 
   hero.addEventListener('mousemove', shadow);
+  //div hero koji zauzema ceo ekran je objekta koji osluškuje dođgađaj tj. pokretanje miša
 </script>
 </body>
 </html>

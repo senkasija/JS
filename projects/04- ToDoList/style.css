@@ -47,6 +47,7 @@ p {
 	-ms-transition: all 0.75s ease;
 	-o-transition: all 0.75 ease;
 	font-weight: normal;
+	cursor: pointer;
 }
 
 #enter:hover{

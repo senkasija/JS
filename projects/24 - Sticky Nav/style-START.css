@@ -24,6 +24,9 @@ body {
   transform: scale(0.98);
   transition: transform 0.5s;
 }
+body.fixed .site-wrap{
+  transform: scale(1.5);
+}
 
 header {
   text-align: center;
@@ -48,6 +51,14 @@ nav {
   transition: all 0.5s;
   position: relative;
   z-index: 1;
+}
+body.fixed nav {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.fixed li.logo{
+  max-width: 500px;
 }
 
 nav ul {

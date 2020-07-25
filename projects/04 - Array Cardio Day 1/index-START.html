@@ -26,34 +26,277 @@
       { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
       { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
     ];
+    console.table(inventors); 
 
     const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 
+//-------------------------------------------------------------------------------------------------
+  function mapForEach (arr, fn){
+    var newArr = [];
+
+    for(naucnik of arr){
+    newArr.push(fn(naucnik));//fn() poziva anonimnu funkciju koja vraća element niza
+    }
+    return newArr;
+  }
+//-------------------------------------------------------------------------------------------------
+    
+    
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+/*
+    var izXVIveka = mapForEach(inventors, function(item){
+      if(item.year >= 1500 && item.year < 1600){
+         return item;
+      }
+    });
+    console.table("Naučnici iz XVI veka");
+    console.table(izXVIveka);
+*/
+    //var rodjeniUXVIveku = inventors.filter(pronalazac => pronalazac.year < 1600 && pronalazac.year > 1500); //
+    //var rodjeniUXVIveku2 = inventors.filter(samoIzXVIveka);//proceduralno
+    //var rodjeniUXVIveku3 = inventors.filter(function(pronalazac){ return pronalazac.year > 1500 && pronalazac.year < 1600});
+/*
+    function izXVIveka(sviNaucnici){
+      rodjenjiuXVI = [];
+      //for(naucnik of sviNaucnici){
+      for(i=0; i<sviNaucnici.length; i++){
+        if(sviNaucnici[i].year < 1600 && sviNaucnici[i].year >= 1500){
+          rodjenjiuXVI.push(sviNaucnici[i]);
+        }
+      }
+      console.log("Rođeni u XVI veku");
+      console.table(rodjenjiuXVI);
+    }
+    izXVIveka(inventors);
+  */
+
+
+//-------------------------------------------------------------------------------------------------
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+   // var pronalazaci = inventors.map(imena => `${imena.first} ${imena.last}`);
+  //console.table(pronalazaci);
+
+/*
+    var imeIprezime = mapForEach(inventors, function(item){
+      return [item.first, item.last];//item je arr[i]
+    });
+    console.log("Vrati niz imena i prezimena naučnika: ");
+    console.table(imeIprezime);
+*/
+   /*
+   function dajImenaiPrezimena(ukljuciNiz){
+     var vratiNizImenaiPrezimena = [];
+     for(naucnik of ukljuciNiz){
+       vratiNizImenaiPrezimena.push([naucnik.first, naucnik.last]);
+     }
+     return vratiNizImenaiPrezimena;
+   }
+   var nizImenaiPrezimena =  dajImenaiPrezimena(inventors);
+   console.table(nizImenaiPrezimena);
+   */
+
+//-------------------------------------------------------------------------------------------------
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    /*
+    * metod sort sortira stringove, a da bi sortirao brojevi koristi se funkcija za poređenje
+    * poredi dva uzastopna elementa i vraća a ukoliko je rezultat negativan, ukoliko je pozitivan vraća b, ako je 0 ništa ne vraća
+    */
+/*
+      function byBirthDay(nizNaucnika){
+              nizNaucnika.sort(function(a, b){
+                return a.year - b.year;
+              });
+            console.table("Prema godini rođenja")
+            console.table(nizNaucnika);
+      }
+     byBirthDay(inventors);
+*/
+//-------------------------------------------------------------------------------------------------
+    /*
+     function bubbleSortBirthday(nizNaucnika){
+        var duzinaNiza = nizNaucnika.length-1;
+        for(naucnik of nizNaucnika){
+          for (var i = 0; i < duzinaNiza; i++){
+            if(nizNaucnika[i].year > nizNaucnika[i+1].year){
+               var tmp = nizNaucnika[i];
+              nizNaucnika[i] = nizNaucnika[i+1];
+              nizNaucnika[i+1] = tmp;
+            }
+          }
+        }
+    
+        return nizNaucnika;        
+      }    
+      console.table(bubbleSortBirthday(inventors));
+    */
+//-------------------------------------------------------------------------------------------------
+//Funkcija za sortiranje Quicksort
+//Funkcijom swap() menjamo pozicije levog i desnog indeksa/ili elementa
+/*
+function swap(items, leftIndex, rightIndex){
+    console.log("Levi indeks je: " + leftIndex);
+    console.log("Desni indeks je: " + rightIndex);
+    var temp = items[leftIndex];
+    items[leftIndex] = items[rightIndex];
+    items[rightIndex] = temp;
+}
+
+//funkcijom partition() poredimo niz sa obe strane pivota
+function partition(items, left, right) {
+    var pivot  = items[Math.floor((right + left) / 2)].year, //middle element
+        i       = left, //left pointer
+        j       = right; //right pointer
+
+        console.log("Koliko je pivot: " + pivot);
+
+    while (i <= j) {
+        while (items[i].year < pivot) {
+            i++;
+        }
+        while (items[j].year > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            swap(items, i, j); //swap two elements
+            i++;
+            j--;
+        }
+    }
+    return i;
+}
+
+//izvršavanje rekurzivne funkcije tako što koristimo indeks i iz prethodne funkcije da podelimo niz na dva dela
+//izvršava se sve dok levi i desni niz ne budu sortirani pri čemu se izvršava na originalnom nizu, tj. nema stvaranja novog niza
+
+function quickSort(items, left, right) {
+    var index;
+    if (items.length > 1) {
+        index = partition(items, left, right); //index returned from partition
+        console.log("A index je: " + index);
+        console.log("Levi pointer je: " + left + ", a desni je: " + right);
+        if (left < index - 1) { //more elements on the left side of the pivot
+            quickSort(items, left, index - 1);
+        }
+        if (index < right) { //more elements on the right side of the pivot
+            quickSort(items, index, right);
+        }
+    }
+    return items;
+}
+// first call to quick sort
+var result = quickSort(inventors, 0, inventors.length - 1);
+
+console.log("Rezultat je: ");
+console.table(result);
+*/
+
+
+//-------------------------------------------------------------------------------------------------
+
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    
+    //var ukupnoZivota = inventors.reduce((ukupno, vek)=> ukupno + (vek.passed-vek.year),0);
+    //console.log(ukupnoZivota);
+
+//-------------------------------------------------------------------------------------------------
+/*
+      function ukupnoZivota(ubaciNizNaucnika){
+        for(naucnik of ubaciNizNaucnika){
+          godine = 0;
+          for(i = 0; i < ubaciNizNaucnika.length; i++){
+           godine = godine + (ubaciNizNaucnika[i].passed - ubaciNizNaucnika[i].year);
+         }
+         return godine;
+        }
+      }
+      let ukupno = ukupnoZivota(inventors);
+      console.log("Godine života: " + ukupno);  
+*/
     // 5. Sort the inventors by years lived
+
+//-----------------------------------------------------------------------------------------------
+
+//napraviti niz sa godinama življenja
+//sortirati od najviše do najmanje
+
+function odaberiStarijeg(sviNaucnici){
+  for(i=0; i < sviNaucnici.length-1; i++){
+    a=sviNaucnici[i];
+    b=sviNaucnici[i];
+    prethodni = a.passed - a.year;
+    sledeci = b.passed - b.year;
+    return prethodni > sledeci ? -1 : 1;
+  }
+}
+var vratiStarijeg = odaberiStarijeg(inventors);
+function poredajpoStarini(){
+  for(svakiNaucnik of sviNaucnici){
+    
+    if(-1){
+      console.log("Sada je minus jedan");
+    } if(1){
+      console.log("Sada je plus jedann");
+    }
+   
+    //ako ako nije minus jedan zameni i vrati
+  }
+}
+console.log(vratiStarijeg);
+console.log(poredajpoStarini(inventors));
+
+
+/*
+    var najstariji = inventors.sort(mojaFunkcija);
+
+    function mojaFunkcija(a, b){
+      var najstariji = a.passed - a.year;
+      var sledeci = b.passed - b.year;
+      return najstariji > sledeci ? -1 : 1;
+    }
+    console.table("Najstariji naučnici");
+    console.table(najstariji);
+*/
+//-------------------------------------------------------------------------------------------------
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    
+
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+
+
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    
+    //const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+
+    //8. each
+/*
+   people.forEach(element => console.log(element));
+
+
+
+    console.groupCollapsed("Šta smo sve dobili?");
+    console.table(rodjeniUXVIveku);
+    console.table(pronalazaci);
+    console.groupEnd();
+*/
   </script>
 </body>
 </html>

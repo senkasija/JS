@@ -27,14 +27,103 @@
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
     // Array.prototype.every() // is everyone 19 or older?
+  
+/*
+* metod some() izvršava funkciju jednom za svaki element niza, a funkcija se obezbeđuje kao argument ove metode
+* funkcija vraća true ili false, pri čemu čim nađe true ne pretražuje dalje niz već odmah vraća vrednost true
+* ne menja originalni niz
+* metod every() proverava da li svi elementi niza ispunjavaju uslov, tako da je suprotna metodu some()
+*/
+/*
+function funkcija(age) { 
+  return new Date().getFullYear() - age.year >= 19;
+  }
+console.log("Da li neko ima 19 ili više godina? " + people.some(funkcija));
+//--------------------------------------------------------------------------------------------------
+    function imaLiPunoletnih(punoletni){
+      var godina = new Date();
+      for(punoletan of punoletni){
+        return godina.getFullYear() - punoletan.year >= 19;
+      }
+    }
+    var starijiod18 = imaLiPunoletnih(people);
+    console.log("Da li neko ima 19 ili više godina? " + starijiod18);
+//--------------------------------------------------------------------------------------------------
+    function dalisusviPunoletni(age){
+      return new Date().getFullYear - age.year >= 19;
+    }
+    console.log("Da li svi imaju 19 ili više godina? "+ people.every(dalisusviPunoletni));
+//--------------------------------------------------------------------------------------------------
+function dalisusviPunoletni1(punoletni1){
+  var godina = new Date();
+  for(punoletan1 of punoletni1){
+    return godina.getFullYear-punoletan1.year >=19;
+  }
+}
+var starijiod18a = dalisusviPunoletni1(people);
+console.log("Da li svi imaju 19 ili više godina? " + starijiod18a);
+*/
 
     // Array.prototype.find()
+    /*
+    * find() Vraća prvi element koji ispunjava uslov i tu se zaustavlja
+    */
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
-
+/*
+    let comment = function(podaci){
+      for (podatak of podaci){
+        if(podatak.id == 823423){
+          return  podatak.text;
+        }
+      }
+    }
+    let vrati = comment(comments);
+    console.log(vrati);
+*/
+//--------------------------------------------------------------------------------------------------
+/*
+let comment1 = comments.find(function(comment1){
+  if(comment1.id === 823423){
+    return comment1.text;
+  }
+});
+console.log(comment1);
+*/
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+/*
+    let comment = function(a){
+      for(i=0; i<a.length-1; i++){
+        if(a[i].id === 823423){
+          return i; //vratiće 1
+        }
+      }
+    }
+    let komentar = comment(comments);
+    console.log(komentar);
+*/
+//--------------------------------------------------------------------------------------------------
+/*
+let comment = comments.findIndex(function(comment){
+return comment.id === 823423;
+});
+console.log(comment);
+*/
+/*
+let comment = function(comment){
+    for(komentar of comment){
+    if(komentar.id === 823423){
+      delete komentar.text;
+      return comment.text;
+    }
+  }
+}
+let vrati = comment(comments);
+console.log(vrati);
+*/
+//--------------------------------------------------------------------------------------------------
 
   </script>
 </body>

@@ -69,6 +69,7 @@
 
     .panel > *:first-child { transform: translateY(-100%); }
     .panel.open-active > *:first-child { transform: translateY(0); }
+    <!-- selektuje sve elemente iz prvog deteta stila panel-->  
     .panel > *:last-child { transform: translateY(100%); }
     .panel.open-active > *:last-child { transform: translateY(0); }
 
@@ -130,17 +131,21 @@
     function toggleOpen() {
       console.log('Hello');
       this.classList.toggle('open');
+      //aktivira stil da bude 5 puta veći od ostala 4 panela
+      console.log(this);
     }
 
     function toggleActive(e) {
       console.log(e.propertyName);
       if (e.propertyName.includes('flex')) {
+        //ukoliko stil koji je povezan sa tranzicijom uključuje reč flex, aktivira se clasa open-active
         this.classList.toggle('open-active');
       }
     }
 
     panels.forEach(panel => panel.addEventListener('click', toggleOpen));
     panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+    //događaj transitionend aktivira proceduru toggleActive kada se završi tranzicija
   </script>
 
 </body>

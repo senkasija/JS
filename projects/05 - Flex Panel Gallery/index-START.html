@@ -26,6 +26,7 @@
     .panels {
       min-height: 100vh;
       overflow: hidden;
+      display: flex;
     }
 
     .panel {
@@ -43,6 +44,10 @@
       font-size: 20px;
       background-size: cover;
       background-position: center;
+      flex: 1;
+      justify-content: flex;
+      display: flex;
+      flex-direction: column;
     }
 
     .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
@@ -56,7 +61,17 @@
       margin: 0;
       width: 100%;
       transition: transform 0.5s;
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
+    .panel > *:first-child { transform: translateY(-100%); }
+    .panel.open-active > *:first-child { transform: translateY(0); }
+    <!-- selektuje sve elemente iz prvog deteta stila panel-->  
+    .panel > *:last-child { transform: translateY(100%); }
+    .panel.open-active > *:last-child { transform: translateY(0); }
 
     .panel p {
       text-transform: uppercase;
@@ -70,6 +85,7 @@
     }
 
     .panel.open {
+      flex: 5;
       font-size: 40px;
     }
 
@@ -105,6 +121,59 @@
   </div>
 
   <script>
+
+    var paneli = document.getElementsByClassName("panel");
+    //paneli su niz koji sadrži 5 elemennata
+    console.log(paneli.length);
+
+    function panelReakcija(){
+      this.classList.toggle('open');
+      console.log("Ovo je this: " + this);
+    }
+
+    function naKrajuTranzicije(e){
+      console.log(e.propertyName);
+      console.log("Na kraju tranzicije");
+      if(e.propertyName.includes("flex")){
+        this.classList.toggle("open-active");
+      }
+    }
+
+    i=0;
+    while (i<paneli.length){
+    paneli[i].addEventListener("click", panelReakcija);
+    i++;
+    }
+
+    for(panel of paneli){
+      panel.addEventListener("transitionend", naKrajuTranzicije);
+    }
+
+
+   /*
+    i=0;
+   
+    while (i<paneli.length){
+      console.log("Pristupamo elementu sa indeksom (i): " + i);
+      console.log(paneli[i]);
+      paneli[i].addEventListener("click", panelAkcija);
+      i++;
+    }
+    console.log(paneli);
+  
+    
+    for(i = 0; i < paneli.length; i++) {
+      paneli[i].style.fontWeight ="bold";
+      console.log("bu");
+    }
+    function panelAkcija(){
+      alert("Klick");
+    }
+   
+    for(panel of paneli){
+      panel.style.fontSize = "50px";
+    }
+*/
 
   </script>
 

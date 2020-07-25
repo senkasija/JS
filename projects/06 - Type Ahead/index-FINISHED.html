@@ -26,7 +26,11 @@ function findMatches(wordToMatch, cities) {
   return cities.filter(place => {
     // here we need to figure out if the city or state matches what was searched
     const regex = new RegExp(wordToMatch, 'gi');
+    //wordToMatch treba da napravi patern za pretraživanje, a to je this.value
+    //Objekat RegExp prima dva argumenta, ono što ukucamo, pri čemu ne vodi računa o dve stvari: veličini slova i da se ne zaustavi kada nađe prvi odgovarajući element
+    //A regular expression is a sequence of characters that forms a search pattern.
     return place.city.match(regex) || place.state.match(regex)
+    //vraća strign koji smo ukucali(regex), a tiče se ili grada ili države
   });
 }
 
@@ -36,6 +40,7 @@ function numberWithCommas(x) {
 
 function displayMatches() {
   const matchArray = findMatches(this.value, cities);
+  //ovo je niz koji nastaje kada se izvrši funkcija findMatches. Ima dva parametra: naš unos i gradove   
   const html = matchArray.map(place => {
     const regex = new RegExp(this.value, 'gi');
     const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
@@ -54,7 +59,11 @@ const searchInput = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions');
 
 searchInput.addEventListener('change', displayMatches);
+//The change event is fired for elements when an alteration to the element's value is committed by the user.
+//aktivira se kad se klikne van polja input, kada ono gubi i fokus
 searchInput.addEventListener('keyup', displayMatches);
+//zanimljivo, jedan objekat prate dva događaja
+
 
 </script>
   </body>

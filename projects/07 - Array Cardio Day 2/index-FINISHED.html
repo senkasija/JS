@@ -43,6 +43,7 @@
 
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
+
     // find the comment with the ID of 823423
 
 
@@ -59,9 +60,11 @@
     // comments.splice(index, 1);
 
     const newComments = [
-      ...comments.slice(0, index),
+      ...comments.slice(0, 1),
       ...comments.slice(index + 1)
     ];
+
+    console.log(newComments);
 
   </script>
 </body>

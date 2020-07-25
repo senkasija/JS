@@ -17,22 +17,37 @@
 
 <script>
   const speed = document.querySelector('.speed');
-  const bar = speed.querySelector('.speed-bar');
+  const bar = speed.querySelector('.speed-bar'); 
   const video = document.querySelector('.flex');
 
   function handleMove(e) {
-      const y = e.pageY - this.offsetTop;
-      const percent = y / this.offsetHeight;
-      const min = 0.4;
+      const y = e.pageY - speed.offsetTop;
+      console.log("pozicija miša: "+ e.pageY);
+      console.log("pozicija vrha  diva spid: " + this.offsetTop);
+      /*
+      * e je objekat on the fly: nalazi se u objektu speed i služi da memoriše vrednost kretanja miša.
+      * Kako je ovaj objekat event u isto vreme i argument?
+      * this je objekat div-speed, ali zašto?
+      * e.pageY određuje brojnu vrednost na osi Y gde se nalazi miš, ali u okviru objekta e. 
+      * this.offsetTop određuje vrh div-spida i on je 175;
+      * y je razlika između pozicije miša i vrha 175 i tako dobijamo plavu traku
+      */
+
+      const percent = y / this.offsetHeight; //ovaj properti određuje visinu diva spid, što je 410 px
+      console.log("visina diva speed "+ this.offsetHeight);
+      const min = 0.5;
       const max = 4;
-      const height = Math.round(percent * 100) + '%';
+      const height = Math.round(percent * 100) + '%'; 
+      console.log(height);
       const playbackRate = percent * (max - min) + min;
+
       bar.style.height = height;
-      bar.textContent = playbackRate.toFixed(2) + '×';
+
+      bar.textContent = playbackRate.toFixed(2) + '×'; //upisuje tekst objektu, a to je taj procenat kome se dodaje x
       video.playbackRate = playbackRate;
     }
 
-  speed.addEventListener('mousemove', handleMove);
+  speed.addEventListener('mousemove', handleMove); // speed je objekat koji ograničava registrovanje kretanja miša
 
 </script>
 </body>

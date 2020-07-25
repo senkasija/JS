@@ -55,6 +55,19 @@
 
 <script>
 
+  var navigacija = document.getElementById("main");
+  var vrhNavigacije = navigacija.offsetTop;
+
+  function stickyNavigacija(){
+    if(window.scrollY >= vrhNavigacije){
+      //kada se izjednače vrh prozora i vrh  navigacije, aktivira se stil fixed sa atributom: position: fixed;
+      document.body.classList.add("fixed");
+    } else {
+      document.body.classList.remove("fixed");
+    }
+  }
+  document.addEventListener("scroll", stickyNavigacija);
+
 </script>
 
 </body>

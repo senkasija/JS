@@ -22,6 +22,14 @@
 
     // Interpolated
     console.log('Hello I am a %s string!', '💩');
+/*
+  %s → Formats the value as a string
+  %i or %d → Formats the value as an integer
+  %f → Formats the value as a floating point value
+  %o → Formats the value as an expandable DOM element. As seen in the Elements panel
+  %O → Formats the value as an expandable JavaScript object
+  %c → Applies CSS style rules to the output string as specified by the second parameter
+*/
 
     // Styled
     // console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue')
@@ -39,26 +47,30 @@
     const p = document.querySelector('p');
 
     console.assert(p.classList.contains('ouch'), 'That is wrong!');
+    //kao mali if, proverava tačnost!
 
     // clearing
-    console.clear();
+    //console.clear();
 
     // Viewing DOM Elements
-    console.log(p);
-    console.dir(p);
+    console.log(p);//pokazuje sadržaj podatka u konzoli, koja može biti string ili objekat
+    console.dir(p);//prikazuje properties objekta.
 
-    console.clear();
+    //console.clear();
 
     // Grouping together
-    dogs.forEach(dog => {
-      console.groupCollapsed(`${dog.name}`);
+    dogs.forEach(dog => {//dog je objekat koji kreiramo on the fly i na njega primenjujemo metode konzole, a sve u okviru niza dogs.
+      console.groupCollapsed(`${dog.name}`);//Creates a new inline group in the Web Console, isto kao i console.group(), ali je ova sažeta u jednom redu.
       console.log(`This is ${dog.name}`);
       console.log(`${dog.name} is ${dog.age} years old`);
       console.log(`${dog.name} is ${dog.age * 7} dog years old`);
-      console.groupEnd(`${dog.name}`);
+      console.groupEnd(`${dog.name}`); //Call console.groupEnd() to back out to the parent group.
     });
 
-    // counting
+console.log("------------------------------------------------");
+  
+
+    // counting - koji put se pojavljuje navedeni string.
 
     console.count('Wes');
     console.count('Wes');
@@ -72,17 +84,20 @@
     console.count('Steve');
     console.count('Steve');
     console.count('Steve');
+
+console.log("------------------------------------------------");
 
     // timing
-    console.time('fetching data');
+    console.time('fetching data');//koliko je vremena potrebno da se izvrši neka naredba. Zanimljivo je što se ovo izvršava asinhrono!
     fetch('https://api.github.com/users/wesbos')
       .then(data => data.json())
       .then(data => {
         console.timeEnd('fetching data');
         console.log(data);
       });
-
-    console.table(dogs);
+console.log("drugi put: ------------------------------------------------");
+    
+    console.table(dogs);//svaki element u nizu će zauzeti jedan red tabele
 
   </script>
 </body>

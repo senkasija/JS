@@ -109,8 +109,9 @@ function handleCheck(e) {
     // go ahead and do what we please
     // loop over every single checkbox
     checkboxes.forEach(checkbox => {
-      console.log(checkbox);
+      //checkboxes je niz HTML inputa
       if (checkbox === this || checkbox === lastChecked) {
+        console.log("ŠTa je this " + this.checked);
         inBetween = !inBetween;
         console.log('Starting to check them in between!');
       }

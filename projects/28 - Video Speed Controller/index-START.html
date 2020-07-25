@@ -15,6 +15,42 @@
   </div>
 
 <script>
+  const speed = document.querySelector(".speed");
+  const bar = speed.querySelector(".speed-bar");
+  //bar je objekat u okviru objekta speed
+  const video = document.querySelector(".flex");
+
+  function brzinaVidea(event){
+/*
+  * event je objekat on the fly: nalazi se u objektu speed i služi da pokaže vrednost kretanja miša.
+  * Kako je ovaj objekat event u isto vreme i argument?
+  * e.pageY određuje brojnu vrednost na osi Y gde se nalazi miš, ali u okviru objekta event. 
+  * this.offsetTop određuje vrh div-speed i on je 175;
+*/
+    const minimum = 0.5;
+    const maximum = 4;
+
+    const gdeJeMis = event.pageY - speed.offsetTop;
+    var uOdnosuNaVisinu = gdeJeMis/speed.offsetHeight;
+    //uOdnosuNaVisinu se kreće od 0 do 1
+    //offsetHeight je properti određuje visinu diva spid, što je 410 px
+    console.log("pozicija miša: "+ event.pageY);
+    console.log("pozicija vrha  diva spid: " + this.offsetTop);
+    console.log("visina diva speed: "+ this.offsetHeight);
+    var pokaziProcenat = Math.round(uOdnosuNaVisinu*100)+"%";
+    console.log("Procenat je: " + pokaziProcenat);
+    var brzinaKlipaSeKrece = uOdnosuNaVisinu * (maximum-minimum) + minimum; 
+
+    //dobijam dinamički raspon kretanja
+    bar.style.height = pokaziProcenat;
+     //dinamička visina koji dodeljuje diva bar
+    bar.textContent = brzinaKlipaSeKrece.toFixed(1) + "x";
+    video.playbackRate = brzinaKlipaSeKrece;
+  }
+
+  speed.addEventListener("mousemove", brzinaVidea);
 </script>
+
+
 </body>
 </html>
