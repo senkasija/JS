@@ -70,8 +70,30 @@
       let screenView = window.scrollY + window.innerHeight; //visina prozora: od vrha koji može biti nevidljiv do dna vidljivog dela
       //console.log("Razlika između vrha čitača i vrha ekrana je: "+ window.scrollY);            
 
-      photos.forEach(slika => {
-       // console.log("Visina viewporta/ekrana je: "+ window.innerHeight);
+      let screenView = window.scrollY + window.innerHeight;
+      console.log("Razlika između vrha prozora i vrha ekrana je: "+ window.scrollY);
+
+
+      photos.forEach(function(slika){
+        var srednjaPozicijaSLike = screenView - slika.height / 2;
+        var dnoFotografije = slika.offsetTop + slika.height;
+        var proslaPolovinuSLike = srednjaPozicijaSLike > slika.offsetTop;
+        var proslaDnoSlike = window.scrollY < dnoFotografije;
+
+        if(proslaPolovinuSLike && proslaDnoSlike){
+        slika.classList.add("active");
+        console.log("Slika se sada vidi!" + " jer je srednja pozicija slike: " + srednjaPozicijaSLike + " veća od vrha slike: " + slika.offsetTop);
+        } else {
+          console.log("Slika se ne vidi" + " jer je: " + screenView);
+          slika.classList.remove("active");
+        }
+
+      });
+
+                  
+/*
+      photos.forEach(slika => {//anonimna funkcija domaći zadatak
+       // console.log("Visina viewporta je: "+ window.innerHeight);
         //console.log("Od početka prozora do dna ekrana je " + screenView);
         //console.log("Vrh slike se nalazi na: "+slika.offsetTop);
 
@@ -89,6 +111,7 @@
           slika.classList.remove("active");
         }        
       });
+*/
     }
 
 
