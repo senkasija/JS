@@ -41,25 +41,51 @@
   const walk = 500; // 500px
 
   function shadow(e) {
-    console.log("Objekat koji je rezultat pokreta mišem:");
-    console.log(e);
+    //console.log("Objekat koji je rezultat pokreta mišem:");
+    //console.log(e);
     const { offsetWidth: width, offsetHeight: height } = hero;
     /* ZANIMLJIVA SINTAKSA. isto je što:
     *   const width = hero.offsetWidth;
-    *   const height = hero.offsetHeight;  
+    *   const height = hero.offsetHeight; 
+    *   Visina i širina se menja ukoliko promenimo veličinu prozora
     */
-    console.log("Hero je div: ");
-    console.log(hero);
-    let { offsetX: x, offsetY: y } = e; // ova varijabla određuje gde je miš unutar diva
+    //console.log("Hero je div: ");
+    //console.log(hero.offsetHeight +" and "+ hero.offsetWidth);
+    let { offsetX: x, offsetY: y } = e; 
+    // ova varijabla određuje gde je miš unutar diva 
+      //The offsetX property returns the x-coordinate of the mouse pointer, relative to the target element.
+
+    /*
+      * Dešava se čudna stvar da unutar taga h1 kursor pokazuje 0 u gornjem levog uglu, a to isto radi i u gornjem levog uglu diva Hero
+      * To se dešava jer događaj mousover se primenjuje kako na div hero koji je roditelj, tako i na njegovo dete h1 i oba taga tretira zasebno
+    */
+    //console.log(this);
+    //this će biti objekat koji okida akcija, a e.target objekat koji sluša akciju
+    // razlika između njih se pojavljuje kada miš dođe na tag h1, a van toga su identični
+    /*
+      * The target event property returns the element that triggered the event.
+      * Dakle, div Hero osluškuje akciju pomeranje miša (u pozivu funkcije ne piše document.addEvetn..., već hero.addEvent..), a kad miš dođe do taga h1 ona se izdvaja taj tag jer je miš na njemu
+      * this je nepromenljiv, a e se menja u zavisnosti gde se miš nalazi 
+    */
 
     if (this !== e.target) {
       x = x + e.target.offsetLeft;
       y = y + e.target.offsetTop;
+      //kada je miš na tagu h1 onda se sabira pozicija miša sa udaljenošću od leve, odnosno gornje ivice prozora te dobijamo tačnu udaljenost i u ovom slučaju
     }
+    //console.log("x je: "+ x + " a y je: "+y);
 
     const xWalk = Math.round((x / width * walk) - (walk / 2));
     const yWalk = Math.round((y / height * walk) - (walk / 2));
-
+    /* Gornje dve varijable određuje koliko daleko senka može da ode 
+    */
+    
+    /*
+      * Mesto gde se nalazimo (300) podeljeno sa širinom diva(1305) pomnoženo sa 500 je 114; minus 250
+      * Meri od sredine prozora, ali ne znam kako.
+      * Shadow in css: prva vrednost pomera po horizontali, druga vrednost pomera po vertikali, treća vrednost je blur
+    */
+    console.log("xWalk je: "+xWalk+" a yWalk je: "+yWalk)
     text.style.textShadow = `
       ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
       ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
@@ -70,7 +96,8 @@
   }
 
   hero.addEventListener('mousemove', shadow);
-  //div hero koji zauzema ceo ekran je objekta koji osluškuje dođgađaj tj. pokretanje miša
+  //div hero koji zauzema ceo ekran je objekat koji osluškuje dođgađaj tj. pokretanje miša
+  
 </script>
 </body>
 </html>

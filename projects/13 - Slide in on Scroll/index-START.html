@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Moja verzijua JS Scroll</title>
+  <title>Moja verzija JS Scroll</title>
 </head>
 <body>
 
@@ -68,10 +68,10 @@
     
     function tranzicijaSlike(){
       let screenView = window.scrollY + window.innerHeight; //visina prozora: od vrha koji može biti nevidljiv do dna vidljivog dela
-      //console.log("Razlika između vrha prozora i vrha ekrana je: "+ window.scrollY);            
+      //console.log("Razlika između vrha čitača i vrha ekrana je: "+ window.scrollY);            
 
       photos.forEach(slika => {
-       // console.log("Visina viewporta je: "+ window.innerHeight);
+       // console.log("Visina viewporta/ekrana je: "+ window.innerHeight);
         //console.log("Od početka prozora do dna ekrana je " + screenView);
         //console.log("Vrh slike se nalazi na: "+slika.offsetTop);
 
@@ -83,9 +83,9 @@
    
         if(proslaPolovinuSLike && proslaDnoSlike){
         slika.classList.add("active");
-        console.log("Slika se sada vidi!" + " jer je srednja pozicija slike: " + srednjaPozicijaSLike + " veća od vrha slike: "+slika.offsetTop);
+        //console.log("Slika se sada vidi!" + " jer je srednja pozicija slike: " + srednjaPozicijaSLike + " veća od vrha slike: "+slika.offsetTop);
         } else {
-          console.log("Slika se ne vidi" + " jer je: " + screenView);
+          //console.log("Slika se ne vidi" + " jer je: " + screenView);
           slika.classList.remove("active");
         }        
       });

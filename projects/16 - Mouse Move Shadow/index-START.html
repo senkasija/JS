@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
+  <title>Moja verzija: Mouse Shadow</title>
 </head>
 <body>
 
@@ -35,6 +35,37 @@
   </style>
 
 <script>
+
+  let hero = document.querySelector(".hero");
+  let tekst = document.querySelector("h1");
+ 
+
+  function senka(event){
+
+    let sirina = hero.offsetWidth;
+    let visina = hero.offsetHeight;
+    console.log(visina, sirina);
+    let x = event.offsetX;
+    let y = event.offsetY;
+
+    if(hero != event.target){
+      x += event.target.offsetLeft;
+      y += event.target.offsetTop;
+    }
+    console.log(x, y);
+
+    let pokretX = x/4;
+    let pokretY = y/4;
+
+    tekst.style.textShadow = `
+                        ${pokretX}px ${pokretY}px 0 rgba(255, 45, 35, .6),
+                        ${pokretX * -1}px ${pokretY}px 0 rgba(45, 255, 35, .6),
+                        ${pokretX}px ${pokretY * -1}px 0 rgba(45, 35, 255, .6)
+    `
+
+  }
+  hero.addEventListener("mousemove", senka);
+
 </script>
 </body>
 </html>
