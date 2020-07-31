@@ -193,24 +193,27 @@ traverseArray(arr, doubler);
 //----------------------------------------------------------------------------
 // 15. 7. 2020
 //----------------------------------------------------------------------------
-
+/*
 fetch/then je ulančavanja, to je nova opcija, ranije se koristio objekat xtmlHTM...
 čejnin služi za uvezivanje podataka
 prvi then potvrđuje da je primio podatke, a drugi
 promise - svaka od prethodnih funkcija je obaćenje i ona se izvršavaju asinhrono
 
-29. 7. 2020.
+//----------------------------------------------------------------------------
+// 27. 7. 2020.
+//----------------------------------------------------------------------------
 
 API
 Kad napišemo zahtev apiju, dobijemo odgovor najčešće u JASONu
 V1 je prva verzija. Kad se promeni verzija, program koji obrađuje podatke više ne radi.
 Frontend pokazuje lepo podatke, a bekend nam odgovara i daje podatke koje tražimo.
+
 Prvi zadataK. Napraviti dva dinamička selekt boksa da filtrira podatke: kategorije i proizovde, na osnovu dva linka koja nam je poslao.
-Jedan je API, ali on vraća različite JASONE u zavisnosti od toga šta tražimo.
+
+Jedan je API, ali on vraća različite JSONE u zavisnosti od toga šta tražimo.
 POSTMAN - za testiranje Apija, da vidimo šta vraća i onda možemo uraditi JS kod
-Zadatak dva: 
-AJAX: ne mora se rifrešati i zahtevi se staljvaju u red čekanja i izvršavaju se kad  dođu na red
-Za zahtev nam treba: url, parametri, funkcija koja obrađju 
+AJAX: ne mora se rifrešati i zahtevi se stavljaju u red čekanja i izvršavaju se kad  dođu na red
+Za zahtev nam treba: url, parametri, funkcija koja obrađjuje podatke 
 
 Kako radi Fetch: jedan od načina za zahhtevanje Ajax: 
 tri stanja Obaćanje: ostvariće se, neće se ostvariti, i čekanje.  Omogućava asinhrono delovanje.
@@ -222,7 +225,9 @@ Finally - Ovo će se uvek izvršiti, u oba slučaja.
 ista stvar je kod  Promisa.
 Domaći za sredu: uraditi kao anonnimnu funkciju: photos.forEach(slika => {//anonimna funkcija domaći zadatak
 
-29. 7. 2020.
+//----------------------------------------------------------------------------
+// 29. 7. 2020.
+//----------------------------------------------------------------------------
 Na linkovima objašnjenjo ono što ćemo danas raditi.
 HTML je podskup XML-a, a u XML-u kome možemo da definišemo tagove i atribute kako želimo.
 XMLHttpRequest - šaljem zahtev kroz vebprotokol http i dobijamo odgovor u jeziku tagova - XML.
@@ -233,3 +238,4 @@ THIS - Imenovaj funkciji treba poslati objekat
 arrayBuffer je binarni tip podataka
 Blob - takođe binarni podaci	
 
+*/
