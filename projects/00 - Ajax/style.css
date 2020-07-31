@@ -1,3 +1,12 @@
 body {
     background-color: green;
 }
+
+#forma__select--kategorije,
+#forma__select--proizvodi
+
+ {
+    margin-bottom: 1rem;
+    width: 300px;
+    height: 3rem;
+}

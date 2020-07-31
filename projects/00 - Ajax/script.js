@@ -5,9 +5,8 @@ let selectBox = document.getElementById("forma__select--kategorije");
 let selectBox1 = document.getElementById("forma__select--proizvodi");
 
 
-function kategorijeIzaberi() {
 
-  let opcijeForme = selectBox.options[selectBox.selectedIndex].value; 
+function kategorijeIzaberi() {
 
     if(selectBox){
 
@@ -35,9 +34,9 @@ function kategorijeIzaberi() {
 
 function proizvodiIzaberi() {
 
-  let opcijeForme = selectBox.options[selectBox.selectedIndex].value; 
+  //let opcijeForme = selectBox1.options[selectBox1.selectedIndex].value; 
 
-    if(selectBox){
+    if(selectBox1){
 
       let getProizvodi = new XMLHttpRequest();
       getProizvodi.open("GET", "https://admin.plodovisela.com/api/v1/products?category=1");
@@ -60,3 +59,6 @@ function proizvodiIzaberi() {
 
     } 
 }
+selectBox.onload = kategorijeIzaberi();
+selectBox1.onload = proizvodiIzaberi();
+
