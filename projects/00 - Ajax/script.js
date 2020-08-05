@@ -7,7 +7,7 @@ let selectBox1 = document.getElementById("forma__select--proizvodi");
 
 function kategorijeIzaberi() {
 
-  let opcijeForme = selectBox.options[selectBox.selectedIndex].value; 
+  let opcijeForme = selectBox.options[selectBox.selectedIndex].value;
 
     if(selectBox){
 
@@ -16,12 +16,14 @@ function kategorijeIzaberi() {
       getKategorije.send();
 
       getKategorije.onload = function(){
+
         let odgovor = JSON.parse(getKategorije.response);
+        
         let odgovorZaKategorije = odgovor.categories;//ovo je niz kategorija
 
         var ispisi = document.querySelector("#forma__select--kategorije");
         console.log(ispisi);
-   
+
         odgovorZaKategorije.forEach(element => {
           textNode = document.createTextNode(element.name);
           liNode = document.createElement("option");
@@ -30,14 +32,14 @@ function kategorijeIzaberi() {
           });
       }
 
-    } 
+    }
 }
 
 function proizvodiIzaberi() {
 
-  let opcijeForme = selectBox.options[selectBox.selectedIndex].value; 
+  let opcijeForme = selectBox.options[selectBox.selectedIndex].value;
 
-    if(selectBox){
+    if(selectBox1){
 
       let getProizvodi = new XMLHttpRequest();
       getProizvodi.open("GET", "https://admin.plodovisela.com/api/v1/products?category=1");
@@ -49,7 +51,7 @@ function proizvodiIzaberi() {
 
         var ispisi = document.querySelector("#forma__select--proizvodi");
         console.log(ispisi);
-   
+
         odgovorZaProizvodi.forEach(element => {
           textNode = document.createTextNode(element.name);
           liNode = document.createElement("option");
@@ -57,6 +59,9 @@ function proizvodiIzaberi() {
           ispisi.appendChild(liNode);
           });
       }
-
-    } 
+    }
 }
+
+let zaKlik = document.getElementById("forma__select--kategorije").options[0];
+
+zaKlik.addEventListener("select", kategorijeIzaberi);
