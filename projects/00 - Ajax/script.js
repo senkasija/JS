@@ -5,9 +5,9 @@ let selectBox = document.getElementById("forma__select--kategorije");
 let selectBox1 = document.getElementById("forma__select--proizvodi");
 
 
-function kategorijeIzaberi() {
 
-  let opcijeForme = selectBox.options[selectBox.selectedIndex].value;
+
+function kategorijeIzaberi() {
 
     if(selectBox){
 
@@ -37,8 +37,6 @@ function kategorijeIzaberi() {
 
 function proizvodiIzaberi() {
 
-  let opcijeForme = selectBox.options[selectBox.selectedIndex].value;
-
     if(selectBox1){
 
       let getProizvodi = new XMLHttpRequest();
@@ -64,4 +62,6 @@ function proizvodiIzaberi() {
 
 let zaKlik = document.getElementById("forma__select--kategorije").options[0];
 
-zaKlik.addEventListener("select", kategorijeIzaberi);
+
+selectBox.onload = kategorijeIzaberi();
+selectBox1.onload = proizvodiIzaberi();
