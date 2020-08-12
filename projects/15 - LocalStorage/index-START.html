@@ -23,12 +23,73 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <button class="dugme">Ukloni sve oznake</button>
   </div>
 
 <script>
-  const addItems = document.querySelector('.add-items');
-  const itemsList = document.querySelector('.plates');
-  const items = [];
+  const formularZaStavke = document.querySelector('.add-items');
+  const listaStavki = document.querySelector('.plates');
+  const stavke = JSON.parse(localStorage.getItem('items')) || []; // prva stavka varaća celi niz, kao što i treba: stavke i jesu niz
+
+
+  function dodajStavku(e) {
+    e.preventDefault();
+    let tekst = (this.querySelector("[name=item]")).value; // memoriše uneseni tekst stavke
+    let stavka = {
+      tekst, // pitanje
+      done: false // Stavka nije čekirana
+    }
+    stavke.push(stavka); //u niz stavke ide čitav objekat stavka, u kome je i uneseni tekst
+    naseliListu(stavke, listaStavki);
+    localStorage.setItem("items", JSON.stringify(stavke));
+    /*
+    * Objekat localStorage ne razume input koji je objekat već ga treba pretvoriti u string, dakle JSON
+    */
+    this.reset(); //Čisti polje input od prethodnog unosa
+  }
+
+  function naseliListu(tanjiri = [], listaTanjira){
+    //objekti stavka ulaze u niz plates
+    listaTanjira.innerHTML = tanjiri.map((tanjir, i) => { // tanjir je objekat, element koji se nalazi u nizu stavke i od tih elemenata pravimo novi niz
+      return `
+        <li>
+        <input type="checkbox" data-index=${i} id="stavka${i}" ${tanjir.done ? 'checked' : ''} />
+        <label for = "stavka${i}">${tanjir.tekst} + ${i}</label>  
+        </li>
+      `;
+    }).join(" ");// join vraća veliki string
+ 
+  }
+
+  function dugmeGotovo(e){
+    if(!e.target.matches("input")) return; // preskoči ukoliko nije kliknut input
+    console.log(e.target);
+    let el = e.target;
+    console.log(el.dataset.index); //dobijamo indeks kliknutog objekta, ovde je reč indeks proizvoljna, ali je koristimo zato što je već upotrebljena u HTML objektu input.
+    let index = el.dataset.index;
+    /*
+    The dataset read-only property of the HTMLOrForeignElement interface provides read/write access to all the custom data attributes (data-*) set on the element. This access is available both in HTML and within the DOM. 
+    */
+    stavke[index].done = !stavke[index].done;
+    localStorage.setItem('items', JSON.stringify(stavke)) ;// gde god koristimo ovaj JSON treba da pozovemo funkciju naseliListu jer ona upisuje promenu u HTML objekat.
+    naseliListu(stavke, listaStavki);
+    
+    if(stavke[index].done){
+
+    }
+  }
+
+  formularZaStavke.addEventListener("submit", dodajStavku);
+  listaStavki.addEventListener("click", dugmeGotovo);
+
+  naseliListu(stavke, listaStavki);
+
+
+
+// * localStorage.setItem(keyname, value)
+// * keyname -- A String specifying the name of the key you want to set the value of
+// * value -- A String specifying the value of the key you want to set the value of
+ 
 
 </script>
 
