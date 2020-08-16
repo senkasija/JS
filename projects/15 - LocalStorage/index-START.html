@@ -29,13 +29,13 @@
 <script>
   const formularZaStavke = document.querySelector('.add-items');
   const listaStavki = document.querySelector('.plates');
-  const stavke = JSON.parse(localStorage.getItem('items')) || []; // prva stavka varaća celi niz, kao što i treba: stavke i jesu niz
+  const stavke = JSON.parse(localStorage.getItem('items')) || []; // prva stavka vraća celi niz, kao što i treba: stavke i jesu niz
 
 
   function dodajStavku(e) {
     e.preventDefault();
     let tekst = (this.querySelector("[name=item]")).value; // memoriše uneseni tekst stavke
-    let stavka = {
+        let stavka = {
       tekst, // pitanje
       done: false // Stavka nije čekirana
     }
@@ -46,6 +46,7 @@
     * Objekat localStorage ne razume input koji je objekat već ga treba pretvoriti u string, dakle JSON
     */
     this.reset(); //Čisti polje input od prethodnog unosa
+    
   }
 
   function naseliListu(tanjiri = [], listaTanjira){
