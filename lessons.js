@@ -239,3 +239,18 @@ arrayBuffer je binarni tip podataka
 Blob - takođe binarni podaci	
 
 */
+
+//----------------------------------------------------------------------------
+// 17. 8. 2020. Objekti -- Njihovo kreiranje
+//----------------------------------------------------------------------------
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+https://www.javascripttutorial.net/javascript-objects/
+ * Chrom OX, Firefox KaiOS -- operativni sistemi sa malim resursima. Koriste ge telefoni koji nisu smart. troši malo baterije, ali ima skoro sve
+ * mogu se koristiti za pravljenje aplikacija
+ * Kad pričamo o nekom objektu, nikada ne koristimo ceo set osobina i vrednosti. Uvek izvlačimo tj. apstrahujemo neke elemente.
+ * Kako se svaki objekat može gledati kao niz, properti se može pozvati pomoću uglastih zagrada, bez tačke.
+ * Display Type -- metod kji funkcioniše prilikom nasleđivanja objekata
+ * Domaći: pročitati linkove i preraditi primere
+ * Klasa je mustra
+ */
