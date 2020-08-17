@@ -29,36 +29,62 @@
 <script>
   const formularZaStavke = document.querySelector('.add-items');
   const listaStavki = document.querySelector('.plates');
-  const stavke = JSON.parse(localStorage.getItem('items')) || []; // prva stavka vraća celi niz, kao što i treba: stavke i jesu niz
+  /*
+    * Niz stavke preuzima string koji je vrednost ključa items i zatim ga pretvara u JS objekat
+    * Prvo pokušava da preuzme niz objekata iz Local Storage, a ukoliko nema tamo objekata, onda se koristi običan niz (prazan)
+  */
+  const stavke = JSON.parse(localStorage.getItem('items')) || []; 
 
-
+    // 1. Kad klikneš na dugme submit pozovi funkciju dodajStavku 
   function dodajStavku(e) {
     e.preventDefault();
-    let tekst = (this.querySelector("[name=item]")).value; // memoriše uneseni tekst stavke
-        let stavka = {
-      tekst, // pitanje
-      done: false // Stavka nije čekirana
+
+    // 1.1. Iz inputa forme add-items preuzmi vrednost i memoriši u varijabli tekst
+    let tekst = (this.querySelector("[name=item]")).value; // this je forma add-items
+
+     // 1.2. Unesi tekst u objekat stavka i predefiniši da nije čekiran. 
+      let stavka = {
+        tekst: tekst,
+        done: false // Stavka nije čekirana u startu
     }
-    stavke.push(stavka); //u niz stavke ide čitav objekat stavka, u kome je i uneseni tekst
+
+    // 1.3.  Unesi objekat stavka u niz stavke
+    stavke.push(stavka); 
+
+     // 1. 4. Upiši objekte iz niza stavke u div sa klasom .plates
     naseliListu(stavke, listaStavki);
+
+    // 1.5. U objekat localStorage unesi niz stavke, ali kao JSON, tj, kao string.
     localStorage.setItem("items", JSON.stringify(stavke));
     /*
-    * Objekat localStorage ne razume input koji je objekat već ga treba pretvoriti u string, dakle JSON
+    * localStorage.setItem(keyname, value), keyname -- A String specifying the name of the key you want to set the value of
+      value -- A String specifying the value of the key you want to set the value of
+    * Objekat localStorage ne razume input koji je objekat već ga vidi kao string. Zato ga treba pretvoriti u string, dakle JSON sa jednom ključnom rečju: items.
     */
-    this.reset(); //Čisti polje input od prethodnog unosa
+    this.reset(); //Čisti polje input od prethodnog unosa. This je forma.
     
   }
-
+    // 2. Unesi stavke iz niza stavke čiji je parametar niz tanjiri u div .plates.
   function naseliListu(tanjiri = [], listaTanjira){
-    //objekti stavka ulaze u niz plates
-    listaTanjira.innerHTML = tanjiri.map((tanjir, i) => { // tanjir je objekat, element koji se nalazi u nizu stavke i od tih elemenata pravimo novi niz
+    // za prvi argument koristi prazan niz da se u slučaju da korisnik ništa ne unese u listu JS ne bi napravio grešku.
+
+    // 2.1. Upiši u div .plates niz stavke i pokaži broj indeksa pod kojim se nalaze u nizu.
+            // i je indeks novog niza, a tanjir element niza, tj. objekat stavka
+            //  
+    listaTanjira.innerHTML = tanjiri.map((tanjir, i) => { 
+
+      // 2.2. Ova funkcija vraća niz koji se sastoji od html elementa u tagu <li> koji se upisuje u formu sa klasom .plates
+              // id u inputu i for u labelu treba da su isti i zato je napisana ista vrednost koja se menja kako se menja indeks
+              // checked je atribut koji checkira checkbox
       return `
         <li>
         <input type="checkbox" data-index=${i} id="stavka${i}" ${tanjir.done ? 'checked' : ''} />
         <label for = "stavka${i}">${tanjir.tekst} + ${i}</label>  
         </li>
       `;
-    }).join(" ");// join vraća veliki string
+    }).join(" ");// join vraća string u html-u
+
+     //console.log(listaTanjira.innerHTML);
  
   }
 
@@ -83,15 +109,8 @@
   formularZaStavke.addEventListener("submit", dodajStavku);
   listaStavki.addEventListener("click", dugmeGotovo);
 
-  naseliListu(stavke, listaStavki);
-
-
-
-// * localStorage.setItem(keyname, value)
-// * keyname -- A String specifying the name of the key you want to set the value of
-// * value -- A String specifying the value of the key you want to set the value of
- 
-
+  naseliListu(stavke, listaStavki); 
+//localStorage.removeItem je za brisanje stavke
 </script>
 
 
