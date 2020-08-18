@@ -59,6 +59,34 @@
 
 <script>
 
+  let keys = document.querySelectorAll(".key");
+
+  // 2. Započni proceduru 
+  function pustiZvuk(e){
+    let zvuk = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    let tipka = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    console.log(zvuk);
+    console.log(tipka);
+    if(!zvuk) return; // ukoliko tipka ne odgovara nekoj iz niza audio, zaustavi proceduru.
+    zvuk.currentTime = 0 // property određuje od koje sekund će da započne emitovanje zvuka. U ovom slučaju vraća ga na nulu.
+    zvuk.play(); // metod play() započinje emitovanje audija ili videa
+    tipka.classList.add("playing");
+  }
+
+  function prekiniTranziciju(e){
+    // pokrenuti samo stil koji se tiče svojstva transform
+    if(e.propertyName !== "transform") return;
+    // this je key, tj element iz niza keys i na njega se primenjuje oslouškivač koji sluša događaj transitionend
+    this.classList.remove("playing");
+    
+   
+  }
+
+  // 1. klikom na kvadratić sa slovom pozovi funkciju koja će aktivirati zvuk i dodatak stilu. 
+  // Event ne može da se dodeli nizu kao što je key
+  // 1.1 kada se završi tranzicija ukloniti stil playing
+  document.addEventListener("keydown", pustiZvuk);
+  keys.forEach(key => key.addEventListener("transitionend", prekiniTranziciju));
 </script>
 
 
