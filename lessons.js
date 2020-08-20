@@ -245,7 +245,7 @@ Blob - takođe binarni podaci
 //----------------------------------------------------------------------------
 /**
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
-https://www.javascripttutorial.net/javascript-objects/
+ * https://www.javascripttutorial.net/javascript-objects/
  * Chrom OX, Firefox KaiOS -- operativni sistemi sa malim resursima. Koriste ge telefoni koji nisu smart. troši malo baterije, ali ima skoro sve
  * mogu se koristiti za pravljenje aplikacija
  * Kad pričamo o nekom objektu, nikada ne koristimo ceo set osobina i vrednosti. Uvek izvlačimo tj. apstrahujemo neke elemente.
@@ -253,4 +253,22 @@ https://www.javascripttutorial.net/javascript-objects/
  * Display Type -- metod kji funkcioniše prilikom nasleđivanja objekata
  * Domaći: pročitati linkove i preraditi primere
  * Klasa je mustra
+ * Kad se definiše klasa koja su pravila gde idu varijable, a gde metode?
+ * Koja je potreba da se naknadno dodaju svojstva objektu?
+ * Zašto bi se koristio String ili prazan string kao ime svojstva?
+ */
+
+ //----------------------------------------------------------------------------
+// 19. 8. 2020. Objekti -- Klase
+//-----------------------------------------------------------------------------
+
+/**
+ * Dve vrste objektnog programiranja: protatype base and class base
+ * Objekti su kao klase živi organizmi koji međusobno komuniciraju
+ * Enkapsulacija, tri tipa: 
+ *  1 Public -- (sve je javno)
+ *  2 Protected -- omogućava da se podatak dostupan samo objektima koji su nalstali od date klase ili su nastali od te klase ili prototipa.
+ *  3 Private -- čuvamo samo za sebe i prilikom nasleđivanja da ne prelazi na decu.
+ * Polimofmom -- u različitim kontekstu se operator različito ponaša.
+ * This i bez thisa omogućava javno i privatno.
  */
