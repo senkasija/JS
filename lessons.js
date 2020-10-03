@@ -213,13 +213,13 @@ Prvi zadataK. Napraviti dva dinamička selekt boksa da filtrira podatke: kategor
 Jedan je API, ali on vraća različite JSONE u zavisnosti od toga šta tražimo.
 POSTMAN - za testiranje Apija, da vidimo šta vraća i onda možemo uraditi JS kod
 AJAX: ne mora se rifrešati i zahtevi se stavljaju u red čekanja i izvršavaju se kad  dođu na red
-Za zahtev nam treba: url, parametri, funkcija koja obrađjuje podatke 
+Za zahtev nam treba: url, parametri, funkcija koja obrađjuje podatke
 
-Kako radi Fetch: jedan od načina za zahhtevanje Ajax: 
+Kako radi Fetch: jedan od načina za zahhtevanje Ajax:
 tri stanja Obaćanje: ostvariće se, neće se ostvariti, i čekanje.  Omogućava asinhrono delovanje.
 Then je funkcija.
-tri bloka koda 
-Try obrađujem odgovor koji je u redu 
+tri bloka koda
+Try obrađujem odgovor koji je u redu
 Catch - obrađujem grešku, ako try nije u redu
 Finally - Ovo će se uvek izvršiti, u oba slučaja.
 ista stvar je kod  Promisa.
@@ -236,7 +236,7 @@ Da bi se desilo slanje, potrebno je pozvati funkciju SEND
 Onnload, onprogres itd. su događaji koji se dešavaju kada se ispuni obećanja, a onda događaje hendlamo nekim procedurama
 THIS - Imenovaj funkciji treba poslati objekat
 arrayBuffer je binarni tip podataka
-Blob - takođe binarni podaci	
+Blob - takođe binarni podaci
 
 */
 
@@ -265,10 +265,66 @@ Blob - takođe binarni podaci
 /**
  * Dve vrste objektnog programiranja: protatype base and class base
  * Objekti su kao klase živi organizmi koji međusobno komuniciraju
- * Enkapsulacija, tri tipa: 
+ * Enkapsulacija, tri tipa:
  *  1 Public -- (sve je javno)
  *  2 Protected -- omogućava da se podatak dostupan samo objektima koji su nalstali od date klase ili su nastali od te klase ili prototipa.
  *  3 Private -- čuvamo samo za sebe i prilikom nasleđivanja da ne prelazi na decu.
  * Polimofmom -- u različitim kontekstu se operator različito ponaša.
  * This i bez thisa omogućava javno i privatno.
+ */
+
+//----------------------------------------------------------------------------
+// 24. 8. 2020. Objekti -- Klase
+//-----------------------------------------------------------------------------
+/**
+ * IndexDB može glomaznije podatke da primi, slike. Možemo je koristiti sa oflajn komunikaciju sa klijentom.
+ * Njega je bolje pratiti na Mozzili.
+ * Drugi broj u funkciji za kreiranje je verzija baze
+ * IndexD<b bi bio kao eksel, a ObjectStore bi bio kao sheet eksela.
+ * JEdinstveni identifikator, on mora biti indeks niza, omogućava da lako dođemo do određenog elementa. On mora da postoji, a unique ne mora da postoji.
+ * Transakcija -- ona daje mehanizme da se  ne može u isto vreme vući 200 dolara :), on sprečava paralelne procese. One omogućavaju bezbedno vraćanje na prethodnu situaciju. menja podatke na bezbedan način da na njih ne utiču drugi procesi.
+ * U lokal storage: čuvaju se kukiji i tekstualni podaci. On čuva do 5 MB, a INndexDB može do 2 GB.
+ *
+ * /// Cookies ///
+ * Proccedura. stranica sačuva fajl, mi ponovo otvorimo tu stranicu i ond adobijama taj fajl. Kuki može da napravi i server i klijent.
+ * Inkognito mod ne znači da neće koristiti stare kukije, već da neće prviti nove.
+ *
+ * // Lokal storidž
+ * Vezan je za računar, i domen
+ *
+ * Session storage // gubi se kada se zatvori tab ili brauzer, ali ostaje session fajl na serveru. To je  u PHPSESSID.
+ *
+ *
+ * Rarzlika između frejmworka i biblioteke: Kod frejmorka moraš ispoštovati pravila. on je kombinacije biblioteke i seta pravila, a biblioteka je samo set korisnih alata. JQuery je frejmwork kako bi struktura bila jasna i onda imamo ujednačen kod.
+ * frejmvork je napravljen stan, unutar koga mogu da izbijam zidove, a za pločice mogu da korisitm biblioteku.
+ * Razlog korišćenja fremvorka je zbog ujednačene strukture. Unutar firme tako dobijamo standardizovan timski rad.
+ *
+ *
+ */
+//----------------------------------------------------------------------------
+// 26. 8. 2020. Objekti -- Klase
+//----------------------------------------------------------------------------
+
+/**
+ * JQuery je prateći element Bootstrapa
+ * Minifikovanje je ukidanje karaktera i onemogućavanje krađe koda. Ostavlje vidljive samo spoljašnje funkcije. Koristimo je za produkciju.
+ * Može se pozvati CDN - to je mreža za dostavljanje sadržaja pa se odatle može preuzeti.
+ * JQuery UI Demo, uraditi za domaći: https://jqueryui.com/selectable/ U Jqueriju i u JS-u.
+ * Bootstrap ga koristi, a Prop je kao JQuery UI
+ */
+
+
+ //----------------------------------------------------------------------------
+// 22. 9. 2020. GA
+//----------------------------------------------------------------------------
+/*
+Reaktivni frejmork - ako se promeni jedna varijabla, na svim drugim stranicama updejtuje
+*/
+
+ //----------------------------------------------------------------------------
+// 2. 10. 2020. Instalacije
+//----------------------------------------------------------------------------
+
+/**
+ * jajonik je varijacija frejmvorka za mobilne uređaji, baziran na angularu.
  */
